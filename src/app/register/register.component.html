@@ -1,0 +1,54 @@
+<h2 class="center">Register with us Today!</h2>
+<div class="row">
+<div class="col-sm-3"></div>
+<div class="col-sm-6 ">
+<form  #uf="ngForm">
+    <div class="form-group">
+        <label><b>Name</b></label>
+        <input type="text" class="form-control " name="name" [class.is-invalid]="name.invalid && name.touched" #name="ngModel" ngModel required>
+        <small class="text-danger" [class.d-none]="name.valid||name.untouched">Name is required.</small>
+    </div>
+    <div class="form-group">
+        <label><b>Phone Number</b></label>
+        <input type="tel" class="form-control" name="phno" ngModel required pattern="^\d{10}$" #phno="ngModel" [class.is-invalid]="(phno.invalid&&phno.touched)">
+        <div *ngIf="phno.errors &&(phno.invalid||phno.touched)">
+            <small class="text-danger" *ngIf="(phno.errors.required && phno.touched); else elseBlock">Phone Number is required .</small>
+            <ng-template #elseBlock>  
+                <small class="text-danger" *ngIf="phno.errors.pattern && phno.touched">Phone Number must be of 10 digits. .</small>  
+            </ng-template>  
+        </div>
+    </div>
+    <div class="form-group">
+        <label><b>Email Id</b></label>
+        <input type="email" class="form-control" name="email" [class.is-invalid]="email.invalid && email.touched" #email="ngModel"  ngModel required>
+        <small class="text-danger" [class.d-none]="email.valid||email.untouched">Email is required.</small>
+    </div>
+    <div class="form-group">
+        <label><b>ID Number</b></label>
+        <input type="string" class="form-control" name="idno" [class.is-invalid]="idno.invalid && idno.touched " #idno="ngModel" ngModel required>
+        <small class="text-danger" [class.d-none]="idno.valid||idno.untouched">ID Number is required.</small>
+    </div>
+    <div class="form-group">
+        <label><b>Password</b></label>
+        <input type="password" class="form-control" name="pwd"[class.is-invalid]="pwd.invalid && pwd.touched " ngModel required #pwd="ngModel">
+        <small class="text-danger" [class.d-none]="pwd.valid||pwd.untouched">Password is required.</small>
+    </div>
+    <div class="form-group">
+        <label><b>Repeat Password</b></label>
+        <input type="password" class="form-control" name="rpwd" [class.is-invalid]="rpwd.invalid && rpwd.touched "ngModel required #rpwd="ngModel"> 
+            <small class="text-danger" *ngIf="pwd.value!=rpwd.value && rpwd.touched">Passwords do not match .</small>   
+    </div>
+    <div class="form-groups" >
+        <select class="custom-select" name="reg" [class.is-invalid]="reg.invalid && reg.touched" ngModel required #reg="ngModel" >
+            <option value="" disabled selected>I am a</option>
+            <option *ngFor="let reg of typeofreg">{{reg}}</option>
+        </select>
+        <small class="text-danger" [class.d-none]="reg.valid||reg.untouched">Please select your type of registration .</small>
+    </div>
+    <br>
+    <div class="form-actions">
+    <button type="submit" [disabled]="uf.form.invalid" >Register</button>
+    </div>
+</form>
+</div>
+</div>

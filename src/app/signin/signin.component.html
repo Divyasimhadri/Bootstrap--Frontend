@@ -1,0 +1,32 @@
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Sign In</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form  #uf="ngForm">
+            <div class="form-group">
+                <label><b>Phone Number</b></label>
+                <input type="tel" class="form-control" name="phno" ngModel required pattern="^\d{10}$" #phno="ngModel" [class.is-invalid]="(phno.invalid&&phno.touched)">
+                <div *ngIf="phno.errors &&(phno.invalid||phno.touched)">
+                    <small class="text-danger" *ngIf="(phno.errors.required && phno.touched); else elseBlock">Phone Number is required .</small>
+                    <ng-template #elseBlock>  
+                        <small class="text-danger" *ngIf="phno.errors.pattern && phno.touched">Phone Number must be of 10 digits. .</small>  
+                    </ng-template>  
+                </div>
+            </div>
+            <div class="form-group">
+                <label><b>Password</b></label>
+                <input type="password" class="form-control" name="pwd"[class.is-invalid]="pwd.invalid && pwd.touched " ngModel required #pwd="ngModel">
+                <small class="text-danger" [class.d-none]="pwd.valid||pwd.untouched">Password is required.</small>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
